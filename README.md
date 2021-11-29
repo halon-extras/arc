@@ -1,5 +1,5 @@
 ## Authenticated Received Chain (ARC) 
-An ARC implementation based on [draft-ietf-dmarc-arc-protocol-18](https://tools.ietf.org/html/draft-ietf-dmarc-arc-protocol-18).
+An ARC implementation based on [rfc8617](https://tools.ietf.org/html/rfc8617).
 
 ```
 import { ARC } from "arc/arc.hsl";
