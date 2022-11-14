@@ -188,7 +188,7 @@ class ARC
 		$headers[] = ["ARC-Seal", "i=$i; a=rsa-sha256; t=$t; cv=$cv;\r\n\td=$domain; s=$selector;\r\n\tb="];
 
 		$data = "";
-		for ($x = 1; $x <= length($chain["arcset"]); ++$x)
+		for ($x = 1; $x <= length($chain["arcset"] ?? []); ++$x)
 		{
 			$arcset = $chain["arcset"];
 			$data .= static::header_canonicalization("ARC-Authentication-Results:".$arcset[$x]["aar"]["h"]) . "\r\n";
