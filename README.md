@@ -1,4 +1,4 @@
-## Authenticated Received Chain (ARC) 
+# Authenticated Received Chain (ARC) 
 An ARC implementation based on [rfc8617](https://tools.ietf.org/html/rfc8617).
 
 ## Installation
