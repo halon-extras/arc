@@ -166,7 +166,7 @@ class ARC
 			];
 	}
 
-	static function seal($mime, $selector, $domain, $privatekey, $chain, $ar)
+	static function seal($mime, $selector, $domain, $privatekey, $chain, $ar, $opts = [])
 	{
 		$i = $chain["status"] != "none" ? $chain["instance"] + 1 : 1;
 
@@ -176,6 +176,7 @@ class ARC
 					"arc" => $i,
 					"return_header" => true,
 					"additional_headers" => ["DKIM-Signature"],
+					"id" => $opts["id"] ?? false
 				]);
 		if (!$ams) return false;
 
@@ -203,7 +204,7 @@ class ARC
 				$data .= "\r\n";
 		}
 
-		$sig = rsa_sign($data, $privatekey, ["id" => ($privatekey[0:4] == "pki:"), "hash" => "sha256"]);
+		$sig = rsa_sign($data, $privatekey, ["id" => $opts["id"] ?? false, "hash" => "sha256"]);
 		$headers[2][1] .= static::split_header_b(base64_encode($sig));
 
 		$mime->addHeader($headers[0][0], $headers[0][1], ["encode" => false]);

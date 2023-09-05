@@ -13,14 +13,15 @@ $chain = ARC::chainValidate($arguments["mail"]);
 if ($chain["status"] == "pass" or $chain["status"] == "none")
 {
 	ARC::seal($arguments["mail"],
-			"201805", "example.com", "pki:arc",
+			"201805", "example.com", "arc",
 			$chain,
 			AuthenticationResults()
 				->SPF($spf, $connection["helo"]["host"], $transaction["senderaddress"]["domain"], ["smtp.remote-ip" => $connection["remoteip"]])
 				->DKIM($arguments["mail"])
 				->DMARC($dmarc)
 				->addMethod("arc", $chain["status"], ["header.oldest-pass" => $chain["oldestpass"] ?? "0"])
-				->toString()
+				->toString(),
+			["id" => true]
 		);
 }
 ```
