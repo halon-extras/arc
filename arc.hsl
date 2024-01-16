@@ -132,7 +132,7 @@ class ARC
 
 			$sig = base64_decode(pcre_replace(''/[\s]/'', "", $arcset[$i]["seal"]["tl"]["b"]));
 			$dns = $arcset[$i]["seal"]["tl"]["s"] . "._domainkey." . $arcset[$i]["seal"]["tl"]["d"];
-			$txt = dnstxt($dns, ["extended_result" => true]);
+			$txt = dns_query($dns, ["type" => "txt"]);
 			if (isset($txt["error"])) return [
 				"status" => "fail",
 				"error" => "ARC-Seal (i=$i) could not be verified. DNS error for $dns: " . $txt["error"]
