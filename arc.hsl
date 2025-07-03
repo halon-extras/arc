@@ -241,7 +241,7 @@ class ARC
 	static function taglist($list)
 	{
 		$result = pcre_match_all(''/[\s]*([a-z0-9_]+)[\s]*=[\s]*([\x21-\x3A\x3C-\x7E\s]*?)[\s]*(;|$)/'', $list);
-		if (array_join($result[0]) != $list)
+		if (!$result or array_join($result[0]) != $list)
 			return none;
 		$tags = [];
 		for ($i = 0; $i < length($result[1]); $i++)
