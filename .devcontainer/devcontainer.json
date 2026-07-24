@@ -9,7 +9,7 @@
 				"halon.vscode-halon",
 				"halon.hsl-syntax",
 				"halon.hsl-linter",
-				"halon.hsl-debug",
+				"halon.hsl-debug"
 			]
 		}
 	},
