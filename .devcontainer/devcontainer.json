@@ -3,16 +3,16 @@
   "context": "..",
   "dockerFile": "./Dockerfile",
   "overrideCommand": false,
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"halon.vscode-halon",
-				"halon.hsl-syntax",
-				"halon.hsl-linter",
-				"halon.hsl-debug"
-			]
-		}
-	},
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "halon.vscode-halon",
+        "halon.hsl-syntax",
+        "halon.hsl-linter",
+        "halon.hsl-debug"
+      ]
+    }
+  },
   "mounts": [
     "source=${localWorkspaceFolder}/.devcontainer/smtpd/dist,target=/etc/halon,type=bind,consistency=cached"
   ],
