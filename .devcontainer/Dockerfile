@@ -1,6 +1,9 @@
 FROM ubuntu:26.04
 LABEL org.opencontainers.image.authors="support@halon.io"
 
+ARG TARGETARCH
+ARG TARGETOS
+
 ARG HALON_REPO_USER
 ENV HALON_REPO_USER=$HALON_REPO_USER
 ARG HALON_REPO_PASS
