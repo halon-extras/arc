@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 LABEL org.opencontainers.image.authors="support@halon.io"
 
 ARG HALON_REPO_USER
@@ -11,13 +11,12 @@ RUN apt-get update
 RUN apt-get install -y wget gnupg
 RUN apt-get install -y apt-transport-https
 
-RUN wget -qO - https://raw.githubusercontent.com/halon/changelog/master/pgp-keys/7F0A73B5.asc | apt-key add -
-RUN echo "deb https://repo.halon.io/ noble stable" >> /etc/apt/sources.list.d/halon.list
+RUN wget -qO- https://raw.githubusercontent.com/halon/pgp-keys/master/pgp-keys/7F0A73B5.gpg > /usr/share/keyrings/halon-archive-keyring.gpg
+RUN echo "deb [arch=${TARGETARCH} signed-by=/usr/share/keyrings/halon-archive-keyring.gpg] https://repo.halon.io/ resolute stable" > /etc/apt/sources.list.d/halon.list
 RUN echo "machine repo.halon.io login ${HALON_REPO_USER} password ${HALON_REPO_PASS}" >> /etc/apt/auth.conf
-RUN apt-get -y update && apt-get -y install halon=6.3.0
+RUN apt-get -y update && apt-get -y install halon-smtpd=6.11.3
 
 RUN /usr/bin/install -d /var/run/halon
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 
 RUN apt-get install -y git cmake build-essential
 
